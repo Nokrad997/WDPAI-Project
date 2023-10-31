@@ -17,7 +17,7 @@
             </div>
         
             <div class="login"> 
-                <form action="data/views/register.php" method="post">
+                <form action="register.php" method="post">
                     <input id="loginInput" href='data/views/register.php' type="text" name="login" placeholder="Login" onfocus="this.placeholder=''" onblur="this.placeholder='Login'"></br>
                     <input id="passwordInput" type="password" name="password" placeholder="Password" onfocus="this.placeholder=''" onblur="this.placeholder='Password'"></br>
                    

@@ -43,7 +43,7 @@ body {
     font-family: 'JetBrains Mono', monospace;
 }
 
-#loginInput{
+#nicknameInput{
     width: 392px;
     height: 57px;
     flex-shrink: 0;
@@ -59,7 +59,7 @@ body {
     font-family: 'JetBrains Mono', monospace;
 }
 
-#passwordInput{
+#passwordInput, #reEnterInput{
     width: 392px;
     height: 57px;
     flex-shrink: 0;
@@ -75,10 +75,9 @@ body {
     font-family: 'JetBrains Mono', monospace;
 }
 
-#loginButton{
-    width: 150px;
+#emailInput {
+    width: 392px;
     height: 57px;
-    margin-left: 35px;
     flex-shrink: 0;
     background-color: #1E1E1E;
     fill: #1E1E1E;
@@ -87,22 +86,9 @@ body {
     border: none;
     margin-bottom: 13px;
     text-align: center;
-    font-size: 20px;
-    font-weight: 400;
+    font-size: 24px;
     color: #bfbfbf;
     font-family: 'JetBrains Mono', monospace;
-    &:hover{
-        background-color: #1E1E1E;
-        fill: #1E1E1E;
-        opacity: 1;
-        transition:cubic-bezier(1, 0, 0, 1) 0.3s;
-        cursor: pointer;
-    }
-    &:active{
-        background-color: #1E1E1E;
-        box-shadow: 0 5px #666;
-        transform: translateY(4px);
-    }
 }
 
 #registerButton{
