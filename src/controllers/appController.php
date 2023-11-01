@@ -3,7 +3,7 @@
 Class AppController {
 
     protected function renderView(string $view = null) {
-        $path = "data/views/".$view.".php";
+        $path = "data/views/".$view.".html";
 
         if(file_exists($path)) {
             ob_start();

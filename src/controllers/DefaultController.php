@@ -11,4 +11,8 @@ class DefaultController extends AppController {
     public function register() {
         $this->renderView("register");
     }
+
+    public function menu() {
+        $this->renderView("menu");
+    }
 }
