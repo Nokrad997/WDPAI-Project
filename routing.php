@@ -1,6 +1,7 @@
 <?php
 
 require_once 'src/controllers/DefaultController.php';
+require_once 'src/controllers/SecurityController.php'; 
 
 class Routing {
     public static $routes;
@@ -9,8 +10,16 @@ class Routing {
         self::$routes[$url] = $controller;
     }
 
+    public static function post ($url, $controller) {
+        self::$routes[$url] = $controller;
+    }
+
     public static function run($url) {
         $action = explode('/', $url)[0];
+
+        if($action === '') {
+            $action = 'home';
+        }
     
         if(!array_key_exists($action, self::$routes)) {
             die("not found");

@@ -4,6 +4,10 @@ require_once 'AppController.php';
 
 class DefaultController extends AppController {
 
+    public function home() {
+        $this->renderView("login");
+    }
+
     public function login() {
         $this->renderView("login");
     }

@@ -18,7 +18,7 @@
             </div>
 
             <div class="login"> 
-                <form id="regForm" onsubmit="formValidation(event)" method="post">
+                <form id="regForm" onsubmit="formValidation(event)" action="register" method="post">
                     <input id="nicknameInput" type="text" name="nickname" placeholder="Nickname" onfocus="this.placeholder=''" onblur="this.placeholder='Nickname'"></br>
                     <input id="emailInput" type="email" name="email" placeholder="Email" onfocus="this.placeholder=''" onblur="this.placeholder='Email'"></br>
                     <input id="passwordInput" type="password" name="password" placeholder="Password" onfocus="this.placeholder=''" onblur="this.placeholder='Password'"></br>
