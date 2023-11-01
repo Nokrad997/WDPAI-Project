@@ -10,6 +10,6 @@ $path = parse_url($path, PHP_URL_PATH);
 
 Routing::get('home', DefaultController);
 Routing::post('login', SecurityController);
-Routing::get('register', SecurityController);
+Routing::get('register', DefaultController);
 Routing::get('menu', DefaultController);
 Routing::run($path);
