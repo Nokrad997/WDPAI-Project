@@ -11,6 +11,8 @@ services:
       - .:/app/
     links:
       - php
+    networks:
+      - wdpai-network
 
   php:
     build:
@@ -18,6 +20,8 @@ services:
       dockerfile: docker/php/Dockerfile
     volumes:
       - .:/app/
+    networks:
+      - wdpai-network
 
   db:
     container_name: pg_container
@@ -26,9 +30,12 @@ services:
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
-      POSTGRES_DB: test_db
+      POSTGRES_DB: wdpai
     ports:
       - "5432:5432"
+    networks:
+      - wdpai-network
+    
       
   pgadmin:
     container_name: pgadmin4_container
@@ -39,3 +46,8 @@ services:
       PGADMIN_DEFAULT_PASSWORD: root
     ports:
       - "5050:80"
+    networks:
+      - wdpai-network
+
+networks:
+  wdpai-network:

@@ -8,27 +8,27 @@ class SecurityController extends AppController {
 
     public function login() {
 
-        // $userRepository = new UserRepository();
+        $userRepository = new UserRepository();
         if(!$this->isPost()) {
             return $this->renderView("login");
         }
         
         $email = $_POST["login"];
         $password = $_POST["password"];
-        // $user = $userRepository->getUser($email); 
+        $user = $userRepository->getUser($email); 
 
-        // if(!$user) {
-        //     return $this->renderView("login", ['messages' => ['User with this email doesn\'t exist!']]);
-        // }
+        if(!$user) {
+            return $this->renderView("login", ['messages' => ['User with this email doesn\'t exist!']]);
+        }
 
-        // if($user->getEmail() !== $email) {
-        //     return $this->renderView("login", ['messages' => ['User with this email doesn\'t exist!']]);
+        if($user->getEmail() !== $email) {
+            return $this->renderView("login", ['messages' => ['User with this email doesn\'t exist!']]);
             
-        // } 
+        } 
 
-        // if($user->getPassword() !== $password) {
-        //     return $this->renderView("login", ['messages' => ['Wrong password!']]);
-        // }
+        if($user->getPassword() !== $password) {
+            return $this->renderView("login", ['messages' => ['Wrong password!']]);
+        }
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/menu");
