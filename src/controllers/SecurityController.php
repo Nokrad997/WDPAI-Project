@@ -9,10 +9,6 @@ class SecurityController extends AppController {
     public function login() {
 
         $userRepository = new UserRepository();
-        if(!$this->isPost()) {
-            return $this->renderView("login");
-        }
-        
         $email = $_POST["login"];
         $password = $_POST["password"];
         $user = $userRepository->getUser($email); 
@@ -35,15 +31,17 @@ class SecurityController extends AppController {
     }
 
     public function register() {
-        $nickname = $_POST["nickname"];
-        $email = $_POST["email"];
-        $password = $_POST["password"];
-        $password2 = $_POST["reEnter"];
+        $userRepo = new UserRepository();
 
-        var_dump($nickname);
-        var_dump($email);
-        var_dump($password);
-        var_dump($password2);
-        die();
+        if($userRepo->getUser($_POST['email']) != null) {
+            return $this->renderView("register", ['messages' => ['User with this email already exists!']]);
+        }
+
+        if($userRepo->addUser($_POST['nickname'], $_POST['password'], $_POST['email'])) {
+            $url = "http://$_SERVER[HTTP_HOST]";
+            header("Location: {$url}/home");
+        } else {
+            return $this->renderView("register", ['messages' => ['Something went wrong!']]);
+        }
     }
 }

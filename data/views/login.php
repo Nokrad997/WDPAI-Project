@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;1,400&display=swap" rel="stylesheet">
-
 </head>
 
 <body>
@@ -19,7 +18,7 @@
         </div>
 
         <div class="login">
-            <form method="post" action="login">
+            <form id="loginForm" method="post" action="login">
                 <div style="margin-bottom: 5px">
                     <?php
                     if (isset($messages)) {
@@ -34,7 +33,7 @@
                 <input id="passwordInput" type="password" name="password" placeholder="Password" onfocus="this.placeholder=''" onblur="this.placeholder='Password'"></br>
 
                 <div class="logRegLayout">
-                    <input id="registerButton" formaction="register" type="submit" value="Register">
+                    <input id="registerButton" formaction="registerForm" type="submit" value="Register">
                     <input id="loginButton" type="submit" value="Login">
                 </div>
 
@@ -42,5 +41,4 @@
         </div>
     </div>
 </body>
-
 </html>

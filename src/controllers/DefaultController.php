@@ -12,6 +12,10 @@ class DefaultController extends AppController {
         $this->renderView("login");
     }
 
+    public function registerForm() {
+        $this->renderView("register");
+    }
+
     public function register() {
         $this->renderView("register");
     }

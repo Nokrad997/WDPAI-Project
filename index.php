@@ -8,8 +8,9 @@ require_once 'src/controllers/SecurityController.php';
 $path = trim($_SERVER['REQUEST_URI'], '/'); 
 $path = parse_url($path, PHP_URL_PATH);
 
-Routing::get('home', DefaultController);
-Routing::post('login', SecurityController);
-Routing::get('register', SecurityController);
-Routing::get('menu', DefaultController);
+Routing::get('home', 'DefaultController');
+Routing::post('login', 'SecurityController');
+Routing::get('registerForm', 'DefaultController');
+Routing::get('register', 'SecurityController');
+Routing::get('menu', 'DefaultController');
 Routing::run($path);
