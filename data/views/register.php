@@ -16,7 +16,7 @@
     <div class="gradient">
 
         <div class="banner">
-            <h1> chuj </h1>
+            <h1> Register </h1>
         </div>
 
         <div class="login">

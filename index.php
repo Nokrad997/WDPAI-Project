@@ -12,5 +12,7 @@ Routing::get('home', 'DefaultController');
 Routing::post('login', 'SecurityController');
 Routing::get('registerForm', 'DefaultController');
 Routing::get('register', 'SecurityController');
+Routing::get('account', 'DefaultController');
 Routing::get('menu', 'DefaultController');
+Routing::get('logout', 'DefaultController');
 Routing::run($path);

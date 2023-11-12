@@ -35,6 +35,14 @@ body {
     font-family: 'JetBrains Mono', monospace;
 }
 
+#menuForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
 #account, #friends, #logout{
     width: 392px;
     height: 57px;

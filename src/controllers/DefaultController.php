@@ -23,4 +23,13 @@ class DefaultController extends AppController {
     public function menu() {
         $this->renderView("menu");
     }
+
+    public function account() {
+        $this->renderView("account");
+    }
+
+    public function logout() {
+        unset($_SESSION);
+        $this->renderView("login");
+    }
 }

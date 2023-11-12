@@ -3,11 +3,14 @@
 require_once 'AppController.php';
 require_once __DIR__.'/../models/User.php';
 require_once __DIR__.'/../repositories/UserRepository.php';
+require_once __DIR__.'/../repositories/ProfilePictureRepository.php';
+
+session_start();
 
 class SecurityController extends AppController {
 
     public function login() {
-
+        
         $userRepository = new UserRepository();
         $email = $_POST["login"];
         $password = $_POST["password"];
@@ -25,6 +28,17 @@ class SecurityController extends AppController {
         if($user->getPassword() !== $password) {
             return $this->renderView("login", ['messages' => ['Wrong password!']]);
         }
+
+        $profilePictureRepository = new ProfilePictureRepository();
+        $profilePicture = $profilePictureRepository->getProfilePicture($user->getId());
+
+        $_SESSION["id"] = $user->getId();
+        $_SESSION["nickname"] = $user->getNickname();
+        $_SESSION["email"] = $user->getEmail();
+        $_SESSION["password"] = $user->getPassword();
+
+        if($profilePicture != null && $profilePicture->getPath() != null)
+            $_SESSION["profilePicture"] = $profilePicture->getPath();
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/menu");
