@@ -118,31 +118,25 @@ function resetChanges() {
 }
 
 function saveChanges() {
-  const dataControllerEndpoint = "../../src/controllers/DataController.php";
+  const dataControllerEndpoint = "data/php/prz.php";
   var formData = new FormData();
 
-  // Dodaj zmiany do FormData
-  formData.append("action", "saveChanges");
   formData.append("nickname", changes.nickname);
   formData.append("email", changes.email);
   formData.append("password", changes.password);
-
-  // Dodaj zdjęcie, jeśli zostało zmienione
-  if (changes.profilePicture !== null) {
-    formData.append("profilePicture", changes.profilePicture);
-  }
+  formData.append("profilePicture", changes.profilePicture);
 
   fetch(dataControllerEndpoint, {
     method: "POST",
-    body: formData, // Użyj FormData zamiast JSON.stringify
+    body: formData,
   })
-    // .then((response) => response.json())
-    // .then((data) => {
-    //   console.log("Zmiany zostały zapisane na kontrolerze danych:", data);
-    //   resetChanges();
-    //   location.reload();
-    // })
-    .catch((error) => {
-      console.error("Błąd podczas zapisywania zmian:", error);
+    .then((response) => response.text())
+    .then((data) => {
+      console.log("Zmiany zostały zapisane na kontrolerze danych:", data);
+      // resetChanges();
+      // location.reload();
     });
+  // .catch((error) => {
+  //   console.error("Błąd podczas zapisywania zmian:", error);
+  // });
 }
