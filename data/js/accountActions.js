@@ -33,23 +33,21 @@ var changes = {
 function changeNickname(event) {
   changes.nickname = prompt("Please enter your new nickname");
 
-  if (changes.nickname != null) {
+  if (changes.nickname != null && changes.nickname != "") {
     document.getElementById("nickname").value = changes.nickname;
+    updateSaveButtonVisibility();
   }
-
-  updateSaveButtonVisibility();
 }
 
 function changeEmail(event) {
   changes.email = prompt("Please enter your new email");
 
   if (changes.email != null) {
-    if (validateEmail(changes.email))
+    if (validateEmail(changes.email)) {
       document.getElementById("email").value = changes.email;
-    else alert("Email format is not valid.");
+      updateSaveButtonVisibility();
+    } else alert("Email format is not valid.");
   }
-
-  updateSaveButtonVisibility();
 }
 
 function openPasswordModal(event) {
@@ -129,14 +127,15 @@ function saveChanges() {
   fetch(dataControllerEndpoint, {
     method: "POST",
     body: formData,
+    credentials: "include",
   })
     .then((response) => response.text())
     .then((data) => {
       console.log("Zmiany zostały zapisane na kontrolerze danych:", data);
       // resetChanges();
       // location.reload();
+    })
+    .catch((error) => {
+      console.error("Błąd podczas zapisywania zmian:", error);
     });
-  // .catch((error) => {
-  //   console.error("Błąd podczas zapisywania zmian:", error);
-  // });
 }
