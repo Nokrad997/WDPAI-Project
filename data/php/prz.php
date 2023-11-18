@@ -7,7 +7,7 @@ require_once __DIR__ . '/../../src/repositories/ProfilePictureRepository.php';
 $response = ['status' => 'error', 'message' => 'Something went wrong.'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+    fopen($path,"w");
     $postData = file_get_contents("php://input");
     $data = json_decode($postData, true);
     $path = __DIR__ . '/../users_profile_pictures/' . $_SESSION['id'] . ".png";
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_FILES['profilePicture']['name'])) {
         move_uploaded_file(
             $_FILES['profilePicture']['tmp_name'],
-            __DIR__ . '/../users_profile_pictures/'
+            __DIR__ . '/../users_profile_pictures/' . $_SESSION['id'] . ".png"
         );
     }
 
