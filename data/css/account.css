@@ -70,7 +70,7 @@ body {
 
 
 
-.menu{
+.menu, #menuForm{
     order: 2;
     height: 60%;
     display: flex;
@@ -79,7 +79,7 @@ body {
     font-family: 'JetBrains Mono', monospace;
 }
 
-#nickname, #email, #password, #friends, #delete{
+#nickname, #email, #password, #friends, #delete, #back{
     width: 392px;
     height: 57px;
     flex-shrink: 0;

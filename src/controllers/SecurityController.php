@@ -7,6 +7,7 @@ require_once __DIR__.'/../repositories/ProfilePictureRepository.php';
 
 session_start();
 
+
 class SecurityController extends AppController {
 
     public function login() {
@@ -36,6 +37,8 @@ class SecurityController extends AppController {
         $_SESSION["nickname"] = $user->getNickname();
         $_SESSION["email"] = $user->getEmail();
         $_SESSION["password"] = $user->getPassword();
+
+        setcookie("id", $user->getId(), time() + 3600, "/");
 
         if($profilePicture != null && $profilePicture->getPath() != null)
             $_SESSION["profilePicture"] = $profilePicture->getPath();

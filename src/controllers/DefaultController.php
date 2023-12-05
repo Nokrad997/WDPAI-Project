@@ -21,15 +21,24 @@ class DefaultController extends AppController {
     }
 
     public function menu() {
-        $this->renderView("menu");
+        if(isset($_COOKIE["id"]) && isset($_SESSION["id"]) && $_COOKIE["id"] == $_SESSION["id"]) {
+            $this->renderView("menu");
+        } else {
+            $this->renderView("login");
+        }
     }
 
     public function account() {
-        $this->renderView("account");
+        if(isset($_COOKIE["id"]) && isset($_SESSION["id"]) && $_COOKIE["id"] == $_SESSION["id"]) {
+            $this->renderView("account");
+        } else {
+            $this->renderView("login");
+        }
     }
 
     public function logout() {
-        unset($_SESSION);
+        session_destroy();
+        setcookie("id", "", time() - 3600, "/");
         $this->renderView("login");
     }
 }
