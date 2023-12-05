@@ -9,36 +9,19 @@ require_once __DIR__ . '/../repositories/ProfilePictureRepository.php';
 
 class UserDataController extends AppController
 {
-    public function saveChanges()
+    public function deleteUser()
     {
-        var_dump("l");
-        die();
-        // // Odpowiedź domyślnie ustawiona na błąd
-        // $response = ['status' => 'error', 'message' => 'Something went wrong.'];
+        $userRepository = new UserRepository();
+        $profilePictureRepository = new ProfilePictureRepository();
 
-        // // Sprawdź czy przyszedł poprawny POST
-        // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        //     // Sprawdź czy przyszedł poprawny JSON
-        //     // $postData = file_get_contents("php://input");
-        //     // $data = json_decode($postData, true);
+        if ($_COOKIE["id"] != $_SESSION["id"]) {
+            return $this->renderView("login", ['messages' => ['You are not logged in!']]);
+        }
 
-        //     // Pobierz dane z przysłanego POST-a
-        //     $nickname = $_POST['nickname'];
-        //     $email = $_POST['email'];
-        //     $password = $_POST['password'];
-
-        //     // Tutaj wykonaj operacje zapisywania danych do bazy danych lub innego miejsca
-        //     // ...
-
-        //     // Przykładowa odpowiedź JSON w przypadku sukcesu
-        //     $response = ['status' => 'success', 'message' => 'Changes saved successfully.'];
-        // } else {
-        //     // Błąd metody żądania
-        //     $response = ['status' => 'error', 'message' => 'Invalid request method.'];
-        // }
-
-        // // Wysyłanie odpowiedzi JSON z powrotem do klienta
-        // header('Content-Type: application/json');
-        // echo json_encode($response);
+        $profilePictureRepository->deleteProfilePicture($_SESSION['id']);
+        $userRepository->deleteUser($_SESSION['id']);
+        session_destroy();
+        setcookie("id", "", time() - 3600, "/");
+        $this->renderView("login");
     }
 }

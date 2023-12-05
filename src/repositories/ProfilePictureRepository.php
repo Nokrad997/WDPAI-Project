@@ -73,4 +73,12 @@ class ProfilePictureRepository extends Repository
             $profilePicture['picture_path']
         );
     }
+
+    public function deleteProfilePicture(int $id) : void {
+        $statement = $this->database->connect()->prepare('
+            DELETE FROM "usersProfilePictures" WHERE user_id = :id
+        ');
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+    }
 }

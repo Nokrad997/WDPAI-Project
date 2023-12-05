@@ -83,4 +83,14 @@ class UserRepository extends Repository
         $_SESSION['email'] = $user['email'];
         $_SESSION['password'] = $user['password'];
     }
+
+    public function deleteUser(int $id): void
+    {
+        $statement = $this->database->connect()->prepare('
+            DELETE FROM "Users" WHERE id = :id;
+        ');
+
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+    }
 }

@@ -15,4 +15,5 @@ Routing::post('register', 'SecurityController');
 Routing::get('account', 'DefaultController');
 Routing::get('menu', 'DefaultController');
 Routing::get('logout', 'DefaultController');
+Routing::get('deleteUser', 'UserDataController');
 Routing::run($path);

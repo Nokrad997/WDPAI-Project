@@ -12,20 +12,20 @@
 
 <body>
     <div class="gradient">
-   <form class="profilePicture" enctype="multipart/form-data">
-    <label for="fileInput" class="profilePicture">
-        <input type="file" id="fileInput" accept="image/*" style="display: none;">
-        <?php
-        if (isset($_SESSION["profilePicture"])) {
-            echo '<img id="profilePicture" src=' . $_SESSION["profilePicture"] . ' alt="Profile Picture">';
-        } else {
-            echo '<img id="profilePicture" src="data/png/defaultProfilePicture.png" alt="Profile Picture">';
-        }
-        ?>
-        <span class="editOverlay">edit</span>
-    </label>
-    <input type="submit" value="Save Profile Picture" onclick="uploadProfilePicture()">
-</form>
+        <form class="profilePicture" enctype="multipart/form-data">
+            <label for="fileInput" class="profilePicture">
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                <?php
+                if (isset($_SESSION["profilePicture"])) {
+                    echo '<img id="profilePicture" src=' . $_SESSION["profilePicture"] . ' alt="Profile Picture">';
+                } else {
+                    echo '<img id="profilePicture" src="data/png/defaultProfilePicture.png" alt="Profile Picture">';
+                }
+                ?>
+                <span class="editOverlay">edit</span>
+            </label>
+            <input type="submit" value="Save Profile Picture" onclick="uploadProfilePicture()">
+        </form>
 
         <div class="menu">
             <form id="menuForm" method="get">
@@ -35,7 +35,7 @@
                 echo '<input id="password" onclick=openModal() type="submit" value=Password></input>';
                 echo '<input id="saveChanges" type="submit" onclick="saveChanges()" value="Save Changes"></input>';
                 echo '<input id="friends" type="submit" value="Manage Friends"></input>';
-                echo '<input id="delete" type="submit" value="Delete account"></input>';
+                echo '<input id="delete" type="submit" value="Delete account" formaction="deleteUser"></input>';
                 echo '<input id="back" type="submit" value="Back" formaction="menu"></input>';
                 ?>
             </form>

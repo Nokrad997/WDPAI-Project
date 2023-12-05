@@ -57,8 +57,8 @@ function openPasswordModal(event) {
 function deleteAccount(event) {
   let deleteAccount = confirm("Are you sure you want to delete your account?");
 
-  if (deleteAccount) {
-    window.location.href = "deleteAccount.php";
+  if (!deleteAccount) {
+    event.preventDefault();
   }
 }
 
