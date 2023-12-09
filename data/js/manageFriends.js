@@ -80,3 +80,47 @@ function deleteFriend(userId, friendId) {
         console.error("Błąd podczas zapisywania zmian:", error);
         });
 }
+
+function acceptFriend(userId, friendId) {
+    endpoint = 'acceptFriend'
+    
+    var formData = new FormData();
+    
+    formData.append("userId", userId);
+    formData.append("friendId", friendId);
+    
+    fetch(endpoint, {
+        method: "POST",
+        body: formData,
+        credentials: "include",
+    })
+        .then((response) => response.json())
+        .then((data) => {
+        location.reload();
+        })
+        .catch((error) => {
+        console.error("Błąd podczas zapisywania zmian:", error);
+        });
+}
+
+function declineFriend(userId, friendId) {
+    endpoint = 'declineFriend'
+    
+    var formData = new FormData();
+    
+    formData.append("userId", userId);
+    formData.append("friendId", friendId);
+    
+    fetch(endpoint, {
+        method: "POST",
+        body: formData,
+        credentials: "include",
+    })
+        .then((response) => response.json())
+        .then((data) => {
+        location.reload();
+        })
+        .catch((error) => {
+        console.error("Błąd podczas zapisywania zmian:", error);
+        });
+}

@@ -7,11 +7,11 @@ require_once __DIR__ . '/../../src/repositories/ProfilePictureRepository.php';
 $response = ['status' => 'error', 'message' => 'Something went wrong.'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    fopen($path, "w");
     $postData = file_get_contents("php://input");
     $data = json_decode($postData, true);
     $path = __DIR__ . '/../users_profile_pictures/' . $_SESSION['id'] . ".png";
     $path = str_replace("/app", "", $path);
+    fopen($path, "w");
 
     $nickname = $_POST['nickname'];
     $email = $_POST['email'];

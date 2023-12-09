@@ -9,18 +9,24 @@ require_once 'src/controllers/FriendsController.php';
 $path = trim($_SERVER['REQUEST_URI'], '/'); 
 $path = parse_url($path, PHP_URL_PATH);
 
-Routing::get('home', 'DefaultController');
-Routing::post('login', 'SecurityController');
-Routing::get('registerForm', 'DefaultController');
 Routing::post('register', 'SecurityController');
+Routing::post('login', 'SecurityController');
+
+Routing::get('registerForm', 'DefaultController');
+Routing::get('home', 'DefaultController');
 Routing::get('account', 'DefaultController');
 Routing::get('menu', 'DefaultController');
 Routing::get('logout', 'DefaultController');
-Routing::get('deleteUser', 'UserDataController');
 Routing::get('friends', 'DefaultController');
 Routing::get('manageFriends', 'DefaultController');
+
+Routing::post('updateUser', 'UserDataController');
 Routing::post('getUserByName', 'UserDataController');
+Routing::get('deleteUser', 'UserDataController');
+
 Routing::post('addFriend', 'FriendsController');
 Routing::post('deleteFriend', 'FriendsController');
+Routing::post('acceptFriend', 'FriendsController');
+Routing::post('declineFriend', 'FriendsController');
 
 Routing::run($path);

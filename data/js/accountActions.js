@@ -30,7 +30,7 @@ function friends() {
 }
 
 function back() {
-  window.history.back();
+  window.location.href='menu'
 }
 
 var changes = {
@@ -126,7 +126,7 @@ function resetChanges() {
 }
 
 function saveChanges() {
-  const dataControllerEndpoint = "data/php/changeData.php";
+  const dataControllerEndpoint = "updateUser";
   var formData = new FormData();
 
   formData.append("nickname", changes.nickname);
@@ -142,7 +142,7 @@ function saveChanges() {
     .then((response) => response.text())
     .then((data) => {
       console.log("Zmiany zostały zapisane na kontrolerze danych:", data);
-      // resetChanges();
+      resetChanges();
       // location.reload();
     })
     .catch((error) => {

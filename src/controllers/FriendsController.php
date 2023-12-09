@@ -50,4 +50,48 @@ class FriendsController extends AppController
         echo json_encode($response);
         exit;
     }
+
+    public function acceptFriend() {
+        $userId = $_POST['userId'];
+        $friendId = $_POST['friendId'];
+
+        $friendsRepository = new FriendsRepository();
+
+        if($friendsRepository->acceptFriend($userId, $friendId)) {
+            
+            $response = [
+                'status' => 'success'
+            ];
+        } else {
+            $response = [
+                'status' => 'error'
+            ];
+        }
+
+        header('Content-type: application/json');
+        echo json_encode($response);
+        exit;
+    }
+
+    public function declineFriend() {
+        $userId = $_POST['userId'];
+        $friendId = $_POST['friendId'];
+
+        $friendsRepository = new FriendsRepository();
+
+        if($friendsRepository->declineFriend($userId, $friendId)) {
+            
+            $response = [
+                'status' => 'success'
+            ];
+        } else {
+            $response = [
+                'status' => 'error'
+            ];
+        }
+
+        header('Content-type: application/json');
+        echo json_encode($response);
+        exit;
+    }
 }

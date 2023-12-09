@@ -85,17 +85,76 @@ class FriendsRepository extends Repository
         return true;
     }
 
-    public function checkIfFriends($id, $friend_id)
+    public function acceptFriend($id, $friend_id)
     {
+        if ($this->checkIfFriends($id, $friend_id) == null) {
+            if($this->checkIfFriends($friend_id, $id) == null)
+                return null;
+            else {
+                $tmp = $id;
+                $id = $friend_id;
+                $friend_id = $tmp;
+            }
+        }
+
         $statement = $this->database->connect()->prepare(
-            'SELECT * FROM "Friends" WHERE user_id = ? AND friend_user_id = ? OR user_id = ? AND friend_user_id = ?'
+            'UPDATE "Friends" SET status = ? WHERE user_id = ? AND friend_user_id = ? RETURNING *'
+        );
+
+        $statement->execute([
+            "accepted",
+            $id,
+            $friend_id
+        ]);
+
+        $friend = $statement->fetch(PDO::FETCH_ASSOC);
+
+        if ($friend == false) {
+            return null;
+        }
+
+        return true;
+    }
+
+    public function declineFriend($id, $friend_id)
+    {
+        if ($this->checkIfFriends($id, $friend_id) == null) {
+            if($this->checkIfFriends($friend_id, $id) == null)
+                return null;
+            else {
+                $tmp = $id;
+                $id = $friend_id;
+                $friend_id = $tmp;
+            }
+        }
+
+        $statement = $this->database->connect()->prepare(
+            'DELETE FROM "Friends" WHERE user_id = ? AND friend_user_id = ? RETURNING *'
         );
 
         $statement->execute([
             $id,
-            $friend_id,
-            $friend_id,
-            $id
+            $friend_id
+        ]);
+
+        $friend = $statement->fetch(PDO::FETCH_ASSOC);
+
+        if ($friend == false) {
+            return null;
+        }
+
+        return true;
+    }
+
+    public function checkIfFriends($id, $friend_id)
+    {
+        $statement = $this->database->connect()->prepare(
+            'SELECT * FROM "Friends" WHERE user_id = ? AND friend_user_id = ?'
+        );
+
+        $statement->execute([
+            $id,
+            $friend_id
         ]);
 
         $friend = $statement->fetch(PDO::FETCH_ASSOC);

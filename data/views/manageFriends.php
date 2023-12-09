@@ -52,6 +52,8 @@
                     $friends = $friendsRepo->getFriends($_SESSION["id"]);
                     if ($friends != null) {
                         foreach ($friends as $friend) {
+                            if ($friend["status"] == "pending")
+                                continue;
                             if ($friend["user_id"] == $_SESSION["id"])
                                 $friendData = $userRepo->getUserById($friend["friend_user_id"]);
                             else
@@ -65,8 +67,35 @@
                     ?>
 
                     <h4> Invites </h4>
+                    <?php
+                    require_once __DIR__ . "/../../src/repositories/FriendsRepository.php";
+                    require_once __DIR__ . "/../../src/repositories/UserRepository.php";
+
+                    $userRepo = new UserRepository();
+                    $friendsRepo = new FriendsRepository();
+
+                    $friends = $friendsRepo->getFriends($_SESSION["id"]);
+                    if ($friends != null) {
+                        foreach ($friends as $friend) {
+                            if ($friend["status"] != "pending")
+                                continue;
+                            if ($friend["user_id"] == $_SESSION["id"])
+                                continue;
+                            else
+                                $friendData = $userRepo->getUserById($friend["user_id"]);
+                            echo '<div class="friend">';
+                            echo '<p class="friendPar">' . $friendData->getEmail() . '</p>';
+                            echo '<input class="acceptFriendBtn" value="Accept" type="submit" onclick="acceptFriend(' . $friendData->getId() . ", " . $_SESSION['id'] . ')">';
+                            echo '<input class="declineFriendBtn" value="Decline" type="submit" onclick="declineFriend(' . $friendData->getId() . ", " . $_SESSION['id'] . ')">';
+                            echo '</div>';
+                        }
+                    }
+                    ?>
                 </div>
             </div>
+        </div>
+        <div class="back">
+                    <input id="backBtn" value="Back" type="submit" onclick="window.location.href='account'">
         </div>
 
     </div>
