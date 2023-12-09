@@ -80,5 +80,9 @@ class ProfilePictureRepository extends Repository
         ');
         $statement->bindParam(':id', $id, PDO::PARAM_INT);
         $statement->execute();
+
+        $path = __DIR__ . '/../../data/users_profile_pictures/' . $_SESSION['id'] . ".png";
+        if(file_exists($path))
+            unlink($path);
     }
 }

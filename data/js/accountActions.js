@@ -4,6 +4,8 @@ document
   .getElementById("password")
   .addEventListener("click", openPasswordModal);
 document.getElementById("delete").addEventListener("click", deleteAccount);
+document.getElementById("back").addEventListener("click", back);
+document.getElementById("friends").addEventListener("click", friends);
 
 document.getElementById("fileInput").addEventListener("change", function () {
   var file = this.files[0];
@@ -22,6 +24,14 @@ document.getElementById("fileInput").addEventListener("change", function () {
 
   updateSaveButtonVisibility();
 });
+
+function friends() {
+  window.location.href = "manageFriends";
+}
+
+function back() {
+  window.history.back();
+}
 
 var changes = {
   nickname: null,
@@ -116,7 +126,7 @@ function resetChanges() {
 }
 
 function saveChanges() {
-  const dataControllerEndpoint = "data/php/prz.php";
+  const dataControllerEndpoint = "data/php/changeData.php";
   var formData = new FormData();
 
   formData.append("nickname", changes.nickname);
@@ -132,8 +142,8 @@ function saveChanges() {
     .then((response) => response.text())
     .then((data) => {
       console.log("Zmiany zostały zapisane na kontrolerze danych:", data);
-      resetChanges();
-      location.reload();
+      // resetChanges();
+      // location.reload();
     })
     .catch((error) => {
       console.error("Błąd podczas zapisywania zmian:", error);

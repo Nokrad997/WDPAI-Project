@@ -6,6 +6,22 @@ require_once 'Repository.php';
 class UserRepository extends Repository
 {
 
+    public function getUsers(): ?array
+    {
+        $statement = $this->database->connect()->prepare(
+            'SELECT * FROM "Users" WHERE id != ?'
+        );
+
+        $statement->execute([$_SESSION['id']]);
+        $users = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        if ($users == false) {
+            return null;
+        }
+
+        return $users;
+    }
+
     public function getUser(string $email): ?User
     {
         $statement = $this->database->connect()->prepare(
@@ -29,6 +45,45 @@ class UserRepository extends Repository
         );
     }
 
+    public function getUserById($id): ?User {
+        $statement = $this->database->connect()->prepare(
+            'SELECT * FROM "Users" WHERE id = ?'
+        );
+
+        $statement->execute([$id]);
+
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+        if ($user == false) {
+            return null;
+        }
+
+        return new User(
+            $user['id'],
+            $user['nickname'],
+            $user['password'],
+            $user['email']
+        );
+    }
+
+    public function getUserByName($nickname): ?array
+    {
+        $statement = $this->database->connect()->prepare(
+            'SELECT * FROM "Users" WHERE nickname LIKE ? AND id != ?'
+        );
+
+        $statement->execute([$nickname, $_SESSION['id']]);
+
+        $users = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        if (empty($users)) {
+            return null;
+        }
+
+        return $users;
+    }
+
+
     public function addUser(string $nickname, string $password, string $email): bool
     {
         $statement = $this->database->connect()->prepare('
@@ -45,11 +100,11 @@ class UserRepository extends Repository
 
     public function updateUser(int $id, string $nickname, string $email, string $password): bool
     {
-        if($password == "null")
+        if ($password == "null")
             $password = null;
-        if($email == "null")
+        if ($email == "null")
             $email = null;
-        if($nickname == "null")
+        if ($nickname == "null")
             $nickname = null;
 
         $statement = $this->database->connect()->prepare('
@@ -68,7 +123,8 @@ class UserRepository extends Repository
         ]);
     }
 
-    public function updateSessionData() {
+    public function updateSessionData()
+    {
         $statement = $this->database->connect()->prepare('
             SELECT * FROM "Users" WHERE id = ?
         ');

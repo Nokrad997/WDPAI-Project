@@ -24,4 +24,32 @@ class UserDataController extends AppController
         setcookie("id", "", time() - 3600, "/");
         $this->renderView("login");
     }
+
+    public function getUserByName()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nickname = $_POST['nickname']; // Pobieramy nickname z danych POST
+        
+            $userRepo = new UserRepository();
+        
+            $users = $userRepo->getUserByName($nickname);
+        
+            if ($users !== null) {
+                $response = [
+                    "status" => "success",
+                    "users" => $users
+                ];
+            } else {
+                $response = [
+                    "status" => "error",
+                    "message" => "User not found."
+                ];
+            }
+        
+        
+            header("Content-Type: application/json");
+            echo json_encode($response);
+            exit;
+        }
+    }
 }

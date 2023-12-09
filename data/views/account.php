@@ -28,17 +28,17 @@
         </form>
 
         <div class="menu">
-            <form id="menuForm" method="get">
                 <?php
                 echo '<input id="nickname" type="submit" value=' . $_SESSION["nickname"] . '></input>';
                 echo '<input id="email" type="submit" value=' . $_SESSION["email"] . '></input>';
                 echo '<input id="password" onclick=openModal() type="submit" value=Password></input>';
                 echo '<input id="saveChanges" type="submit" onclick="saveChanges()" value="Save Changes"></input>';
                 echo '<input id="friends" type="submit" value="Manage Friends"></input>';
+                echo '<form method="get">';
                 echo '<input id="delete" type="submit" value="Delete account" formaction="deleteUser"></input>';
-                echo '<input id="back" type="submit" value="Back" formaction="menu"></input>';
+                echo '</form>';
+                echo '<input id="back" type="submit" value="Back"></input>';
                 ?>
-            </form>
         </div>
     </div>
 

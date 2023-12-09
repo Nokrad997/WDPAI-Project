@@ -44,6 +44,22 @@ class DefaultController extends AppController {
         }
     }
 
+    public function friends() {
+        if(isset($_COOKIE["id"]) && isset($_SESSION["id"]) && $_COOKIE["id"] == $_SESSION["id"]) {
+            $this->renderView("friends");
+        } else {
+            $this->renderView("login");
+        }
+    }
+
+    public function manageFriends() {
+        if(isset($_COOKIE["id"]) && isset($_SESSION["id"]) && $_COOKIE["id"] == $_SESSION["id"]) {
+            $this->renderView("manageFriends");
+        } else {
+            $this->renderView("login");
+        }
+    }
+
     public function logout() {
         session_destroy();
         setcookie("id", "", time() - 3600, "/");
