@@ -1,0 +1,27 @@
+# Używamy oficjalnego obrazu PHP w wersji CLI
+FROM php:7.4-cli
+
+# Instalujemy zależności
+RUN apt-get update && apt-get install -y \
+    libicu-dev \
+    zip \
+    git \
+    && docker-php-ext-install -j$(nproc) intl
+
+# Instalujemy Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Ustawiamy katalog roboczy
+WORKDIR /var/www/html
+
+# Instalujemy Ratchet
+RUN COMPOSER_ALLOW_SUPERUSER=1 composer require cboden/ratchet
+
+# Kopiujemy plik websocket.php do katalogu roboczego w kontenerze
+COPY websocket.php .
+
+# Eksponujemy port 8080 dla serwera WebSocket
+EXPOSE 8080
+
+# Uruchamiamy serwer WebSocket
+CMD ["php", "websocket.php"]

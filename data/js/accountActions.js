@@ -143,7 +143,7 @@ function saveChanges() {
     .then((data) => {
       console.log("Zmiany zostały zapisane na kontrolerze danych:", data);
       resetChanges();
-      // location.reload();
+      location.reload();
     })
     .catch((error) => {
       console.error("Błąd podczas zapisywania zmian:", error);

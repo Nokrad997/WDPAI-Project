@@ -9,7 +9,7 @@ class ProfilePictureRepository extends Repository
     public function getProfilePicture($id)
     {
         $statement = $this->database->connect()->prepare(
-            'SELECT * FROM "usersProfilePictures" WHERE id = ?'
+            'SELECT * FROM "usersProfilePictures" WHERE user_id = ?'
         );
 
         $statement->execute([$id]);

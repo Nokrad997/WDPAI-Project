@@ -16,13 +16,13 @@
             <label for="fileInput" class="profilePicture">
                 <input type="file" id="fileInput" accept="image/*" style="display: none;">
                 <?php
-                if (isset($_SESSION["profilePicture"])) {
+                if (isset($_SESSION["profilePicture"]) && file_exists("/app/" . $_SESSION["profilePicture"])) {
                     echo '<img id="profilePicture" src=' . $_SESSION["profilePicture"] . ' alt="Profile Picture">';
                 } else {
                     echo '<img id="profilePicture" src="data/png/defaultProfilePicture.png" alt="Profile Picture">';
                 }
                 ?>
-                <span class="editOverlay">edit</span>
+                <!-- <span class="editOverlay">edit</span> -->
             </label>
             <input type="submit" value="Save Profile Picture" onclick="uploadProfilePicture()">
         </form>

@@ -60,6 +60,14 @@ class DefaultController extends AppController {
         }
     }
 
+    public function chat() {
+        if(isset($_COOKIE["id"]) && isset($_SESSION["id"]) && $_COOKIE["id"] == $_SESSION["id"]) {
+            $this->renderView("chat");
+        } else {
+            $this->renderView("login");
+        }
+    }
+
     public function logout() {
         session_destroy();
         setcookie("id", "", time() - 3600, "/");

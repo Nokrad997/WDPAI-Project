@@ -84,7 +84,6 @@ class UserDataController extends AppController
             $profilePictureRepository->addProfilePicture($_SESSION['id'], $path);
         } else {
             $profilePictureRepository->updateProfilePicture($_SESSION['id'], $path);
-            echo "cipa";
         }
 
         if (!empty($_FILES['profilePicture']['name'])) {

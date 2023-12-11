@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: docker/nginx/Dockerfile
     ports:
-      - "8080:80"
+      - "80:80"
     volumes:
       - .:/app/
     links:
@@ -35,6 +35,16 @@ services:
     networks:
         wdpai-network:
           ipv4_address: 172.18.0.3
+      
+  websocket:
+    build:
+      context: .
+      dockerfile: docker/websocket/Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+        wdpai-network:
+        
 
   pgadmin:
     container_name: pgadmin4_container
