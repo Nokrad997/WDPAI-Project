@@ -15,23 +15,41 @@
     <div class="gradient">
 
         <div class="banner">
-                <?php
-                require_once __DIR__ . "/../../src/repositories/UserRepository.php";
-                $userRepo = new UserRepository();
-                $user = $userRepo->getUserById($_SESSION["chatWith"]);
+            <?php
+            require_once __DIR__ . "/../../src/repositories/UserRepository.php";
+            $userRepo = new UserRepository();
+            $user = $userRepo->getUserById($_SESSION["chatWith"]);
 
-                echo '<h1> Chat with ' . $user->getNickname() . '</h1>';
-                ?>
+            echo '<h1> Chat with ' . $user->getNickname() . '</h1>';
+            ?>
         </div>
         <div class="friendsChat">
             <div id="friendPanel">
+                <?php
+                require_once __DIR__ . "/../../src/repositories/MessagesRepository.php";
 
+                $msgRepo = new MessagesRepository();
+                $messages = $msgRepo->getMessages($_SESSION["id"], $_SESSION["chatWith"]);
+                if ($messages != null) {
+                    foreach ($messages as $message) {
+                        if ($message["sender_id"] == $_SESSION["id"]) {
+                            echo '<div class="myMessageBox">';
+                            echo '<p class="myMessage">' . $message["content"] . '</p>';
+                            echo '</div>';
+                        } else {
+                            echo '<div class="friendMessageBox">';
+                            echo '<p class="friendMessage">' . $message["content"] . '</p>';
+                            echo '</div>';
+                        }
+                    }
+                }
+                ?>
             </div>
         </div>
         <div class="stupka">
             <?php
-                echo '<p id="chatWithId" hidden>' . $_SESSION["chatWith"] . '</p>';
-                echo '<p id="userId" hidden>' . $_SESSION["id"] . '</p>';
+            echo '<p id="chatWithId" hidden>' . $_SESSION["chatWith"] . '</p>';
+            echo '<p id="userId" hidden>' . $_SESSION["id"] . '</p>';
             ?>
             <input id="backBtn" value="Back" type="submit" onclick="window.location.href='friends'">
             <input id="textInput" type="text" placeholder="Type your message here...">
@@ -39,5 +57,6 @@
 
     </div>
 </body>
-    <script src="data/js/chat.js"></script>
+<script src="data/js/chat.js"></script>
+
 </html>

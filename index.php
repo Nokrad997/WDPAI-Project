@@ -32,7 +32,6 @@ Routing::post('declineFriend', 'FriendsController');
 
 Routing::get('openChatWith', 'ChatController');
 Routing::get('chat', 'ChatController');
-Routing::get('longPolling', 'ChatController');
-Routing::post('addMessage', 'ChatController');
+Routing::post('saveMessage', 'ChatController');
 
 Routing::run($path);

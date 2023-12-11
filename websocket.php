@@ -44,7 +44,14 @@ class MyChat implements MessageComponentInterface
 
                 foreach ($this->clients as $client) {
                     if ($client !== $from && isset($this->users[$target]) && $this->users[$target] === $client) {
-                        $client->send(json_encode(['content' => $data['content']]));
+                        
+                        $client->send(json_encode(
+                            [
+                                'content' => $data['content'],
+                                'sender' => $data['sender'],
+                                'recipent' => $data['target']
+                            ]
+                        ));
                     }
                 }
                 break;
