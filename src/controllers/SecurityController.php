@@ -42,9 +42,16 @@ class SecurityController extends AppController {
 
         if($profilePicture != null && $profilePicture->getPath() != null)
             $_SESSION["profilePicture"] = $profilePicture->getPath();
+        
 
-        $url = "http://$_SERVER[HTTP_HOST]";
-        header("Location: {$url}/menu");
+        if($user->getIsAdmin()) {
+            $url = "http://$_SERVER[HTTP_HOST]";
+            header("Location: {$url}/admin");
+        } else {
+            $url = "http://$_SERVER[HTTP_HOST]";
+            header("Location: {$url}/menu");
+        }
+
     }
 
     public function register() {

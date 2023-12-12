@@ -4,6 +4,7 @@ require_once __DIR__ . '/../repositories/MessagesRepository.php';
 
 class ChatController extends AppController
 {
+
     public function openChatWith()
     {
         if (isset($_COOKIE["id"]) && isset($_SESSION["id"]) && $_COOKIE["id"] == $_SESSION["id"]) {

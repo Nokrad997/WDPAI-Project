@@ -9,7 +9,7 @@ class UserRepository extends Repository
     public function getUsers(): ?array
     {
         $statement = $this->database->connect()->prepare(
-            'SELECT * FROM "Users" WHERE id != ?'
+            'SELECT * FROM "Users" WHERE id != ? ORDER BY id ASC'
         );
 
         $statement->execute([$_SESSION['id']]);
@@ -41,11 +41,13 @@ class UserRepository extends Repository
             $user['id'],
             $user['nickname'],
             $user['password'],
-            $user['email']
+            $user['email'],
+            $user['isAdmin']
         );
     }
 
-    public function getUserById($id): ?User {
+    public function getUserById($id): ?User
+    {
         $statement = $this->database->connect()->prepare(
             'SELECT * FROM "Users" WHERE id = ?'
         );
@@ -62,7 +64,8 @@ class UserRepository extends Repository
             $user['id'],
             $user['nickname'],
             $user['password'],
-            $user['email']
+            $user['email'],
+            $user['isAdmin']
         );
     }
 
@@ -98,7 +101,7 @@ class UserRepository extends Repository
         ]);
     }
 
-    public function updateUser(int $id, string $nickname, string $email, string $password): bool
+    public function updateUser(int $id, string $nickname = 'null', string $email = 'null', string $password = 'null'): bool
     {
         if ($password == "null")
             $password = null;

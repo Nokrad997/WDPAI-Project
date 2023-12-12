@@ -165,4 +165,15 @@ class FriendsRepository extends Repository
 
         return true;
     }
+
+    public function deleteFriends($user_id) {
+        $statement = $this->database->connect()->prepare(
+            'DELETE FROM "Friends" WHERE user_id = ? OR friend_user_id = ?'
+        );
+
+        $statement->execute([
+            $user_id,
+            $user_id
+        ]);
+    }
 }

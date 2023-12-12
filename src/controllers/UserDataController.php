@@ -5,7 +5,8 @@ require_once __DIR__ . '/../models/User.php';
 require_once __DIR__ . '/../models/ProfilePicture.php';
 require_once __DIR__ . '/../repositories/UserRepository.php';
 require_once __DIR__ . '/../repositories/ProfilePictureRepository.php';
-
+require_once __DIR__ . '/../repositories/FriendsRepository.php';
+require_once __DIR__ . '/../repositories/MessagesRepository.php';
 
 class UserDataController extends AppController
 {
@@ -13,13 +14,18 @@ class UserDataController extends AppController
     {
         $userRepository = new UserRepository();
         $profilePictureRepository = new ProfilePictureRepository();
+        $friendsRepository = new FriendsRepository();
+        $messagesRepository = new MessagesRepository();
 
         if ($_COOKIE["id"] != $_SESSION["id"]) {
             return $this->renderView("login", ['messages' => ['You are not logged in!']]);
         }
 
         $profilePictureRepository->deleteProfilePicture($_SESSION['id']);
+        $friendsRepository->deleteFriends($_SESSION['id']);
+        $messagesRepository->deleteMessages($_SESSION['id']);
         $userRepository->deleteUser($_SESSION['id']);
+
         session_destroy();
         setcookie("id", "", time() - 3600, "/");
         $this->renderView("login");

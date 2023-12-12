@@ -44,4 +44,15 @@ class MessagesRepository extends Repository {
 
         return $messages;
     }
+
+    public function deleteMessages($user_id) {
+        $statement = $this->database->connect()->prepare(
+            'DELETE FROM "Messages" WHERE sender_id = ? OR recipent_id = ?'
+        );
+
+        $statement->execute([
+            $user_id,
+            $user_id
+        ]);
+    }
 }

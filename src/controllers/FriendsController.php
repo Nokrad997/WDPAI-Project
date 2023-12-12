@@ -7,6 +7,15 @@ require_once __DIR__ . '/../repositories/FriendsRepository.php';
 
 class FriendsController extends AppController
 {
+
+    public function friends() {
+        if(isset($_COOKIE["id"]) && isset($_SESSION["id"]) && $_COOKIE["id"] == $_SESSION["id"]) {
+            $this->renderView("friends");
+        } else {
+            $this->renderView("login");
+        }
+    }
+    
     public function addFriend()
     {
         $userId = $_POST['userId'];

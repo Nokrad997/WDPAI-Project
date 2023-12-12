@@ -5,12 +5,13 @@ class User{
     public $nickname;
     public $password;
     public $email;
-
-    public function __construct(int $id, string $nickname, string $password, string $email){
+    public $isAdmin;
+    public function __construct(int $id, string $nickname, string $password, string $email, bool $isAdmin = false){
         $this->id = $id;
         $this->nickname = $nickname;
         $this->password = $password;
         $this->email = $email;
+        $this->isAdmin = $isAdmin;
     }
 
     public function getId(): int{
@@ -43,5 +44,13 @@ class User{
 
     public function setEmail(string $email): void{
         $this->email = $email;
+    }
+
+    public function getIsAdmin(): bool{
+        return $this->isAdmin;
+    }
+
+    public function setIsAdmin(bool $isAdmin): void{
+        $this->isAdmin = $isAdmin;
     }
 }
