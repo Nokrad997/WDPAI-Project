@@ -1,0 +1,148 @@
+body {
+  margin: 0;
+}
+.gradient {
+  width: 100vw;
+  height: 100vh;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    0deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(249, 48, 48, 1) 35%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profilePicture {
+  order: 1;
+  width: 520px;
+  height: 520px;
+  border-radius: 120px;
+  border: none;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.profilePicture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  &::hover {
+    border: blue;
+  }
+}
+
+.profilePicture::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.profilePicture:hover::before {
+  opacity: 1;
+}
+
+.profilePicture::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 0, 0, 0.5);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.profilePicture:hover::after {
+  opacity: 1;
+}
+
+.menu,
+#menuForm {
+  order: 2;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-family: "JetBrains Mono", monospace;
+}
+
+#nickname,
+#email,
+#password,
+#confirmPassword,
+#newPassword,
+#friends,
+#delete,
+#back {
+  width: 50vw;
+  height: 5vh;
+  flex-shrink: 0;
+  background-color: #1e1e1e;
+  fill: #1e1e1e;
+  opacity: 0.7;
+  border-radius: 20px;
+  border: none;
+  margin-bottom: 13px;
+  text-align: center;
+  font-size: 40px;
+  color: #bfbfbf;
+  font-family: "JetBrains Mono", monospace;
+  position: relative;
+  &:hover {
+    background-color: #1e1e1e;
+    fill: #1e1e1e;
+    opacity: 1;
+    transition: cubic-bezier(1, 0, 0, 1) 0.3s;
+    cursor: pointer;
+  }
+  &:active {
+    background-color: #1e1e1e;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+}
+
+#saveChanges {
+  width: 50vw;
+  height: 5vh;
+  flex-shrink: 0;
+  background-color: #1e1e1e;
+  fill: #1e1e1e;
+  opacity: 0.7;
+  border-radius: 20px;
+  border: none;
+  margin-bottom: 13px;
+  text-align: center;
+  font-size: 40px;
+  color: #bfbfbf;
+  font-family: "JetBrains Mono", monospace;
+  position: relative;
+  display: none;
+  &:hover {
+    background-color: #1e1e1e;
+    fill: #1e1e1e;
+    opacity: 1;
+    transition: cubic-bezier(1, 0, 0, 1) 0.3s;
+    cursor: pointer;
+  }
+  &:active {
+    background-color: #1e1e1e;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+}

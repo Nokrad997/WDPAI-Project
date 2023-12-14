@@ -1,8 +1,6 @@
 document.getElementById("nickname").addEventListener("click", changeNickname);
 document.getElementById("email").addEventListener("click", changeEmail);
-document
-  .getElementById("password")
-  .addEventListener("click", openPasswordModal);
+document.getElementById("password").addEventListener("click", changePassword);
 document.getElementById("delete").addEventListener("click", deleteAccount);
 document.getElementById("back").addEventListener("click", back);
 document.getElementById("friends").addEventListener("click", friends);
@@ -30,7 +28,7 @@ function friends() {
 }
 
 function back() {
-  window.location.href='menu'
+  window.location.href = "menu";
 }
 
 var changes = {
@@ -60,10 +58,6 @@ function changeEmail(event) {
   }
 }
 
-function openPasswordModal(event) {
-  openModal();
-}
-
 function deleteAccount(event) {
   let deleteAccount = confirm("Are you sure you want to delete your account?");
 
@@ -77,12 +71,16 @@ function validateEmail(x) {
   return emailRegex.test(x);
 }
 
-function openModal() {
-  document.getElementById("passwordModal").style.display = "block";
-}
+function changePassword() {
+  document.getElementById("confirmPassword").style.display = "block";
+  document.getElementById("newPassword").style.display = "block";
+  document.getElementById("password").style.display = "none";
 
-function closeModal() {
-  document.getElementById("passwordModal").style.display = "none";
+  document.getElementById("confirmPassword").addEventListener("keyup" , function(event) {
+    if (event.key === "Enter") {
+      savePassword();
+    }
+  });
 }
 
 function savePassword() {
@@ -101,7 +99,11 @@ function savePassword() {
 
   changes.password = newPassword;
   updateSaveButtonVisibility();
-  closeModal();
+  document.getElementById("confirmPassword").style.display = "none";
+  document.getElementById("confirmPassword").value = "";
+  document.getElementById("newPassword").style.display = "none";
+  document.getElementById("newPassword").value = "";
+  document.getElementById("password").style.display = "block";
 }
 
 function validatePassword(x) {

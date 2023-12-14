@@ -105,9 +105,13 @@ class UserRepository extends Repository
     {
         if ($password == "null")
             $password = null;
+        else
+            $password = password_hash($password, PASSWORD_DEFAULT);
+
         if ($email == "null")
             $email = null;
-        if ($nickname == "null")
+        
+            if ($nickname == "null")
             $nickname = null;
 
         $statement = $this->database->connect()->prepare('

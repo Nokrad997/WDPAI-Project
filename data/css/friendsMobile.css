@@ -1,0 +1,139 @@
+body {
+    margin: 0;
+  }
+  .gradient {
+    width: 100vw;
+    height: 100vh;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      0deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(249, 48, 48, 1) 35%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .banner {
+    order: 1;
+    margin-top: 10vh;
+    text-align: center;
+    color: #fff;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 100;
+    line-height: normal;
+    text-transform: capitalize;;
+  }
+  
+  .friendsMenu {
+    order: 2;
+
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    font-family: "JetBrains Mono", monospace;
+    justify-content: center;
+  }
+  
+  .back{
+    order: 3;
+    height: 50%;
+    justify-content: center;
+  }
+  
+  #backBtn{
+    width: 22vw;
+    height: 4vh;
+    flex-shrink: 0;
+    background-color: #1e1e1e;
+    fill: #1e1e1e;
+    opacity: 0.7;
+    border-radius: 20px;
+    border: none;
+    margin-bottom: 13px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 400;
+    color: #bfbfbf;
+    font-family: "JetBrains Mono", monospace;
+    &:hover {
+      background-color: #1e1e1e;
+      fill: #1e1e1e;
+      opacity: 1;
+      transition: cubic-bezier(1, 0, 0, 1) 0.3s;
+      cursor: pointer;
+    }
+    &:active {
+      background-color: #1e1e1e;
+      box-shadow: 0 5px #666;
+      transform: translateY(4px);
+    }
+  }
+
+  #friendPanel {
+    width: 90vw; 
+    height: 40vh; 
+    overflow-y: auto; 
+    overflow-x: hidden; 
+    padding: 10px;
+    flex-shrink: 0;
+    background-color: #1e1e1e;
+    fill: #1e1e1e;
+    opacity: 0.7;
+    border-radius: 20px;
+    border: none;
+    margin-bottom: 13px;
+    text-align: center;
+    font-size: 35px;
+    color: #bfbfbf;
+    font-family: "JetBrains Mono", monospace;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .friend {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .friendImg {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-left: 40px;
+    flex-shrink: 0;
+  }
+
+  .friendPar {
+      margin-right: 40px;
+  }
+  
+  
+  #menuForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .friendSearch {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  h4 {
+    font-size: 30px;
+    font-weight: 400;
+    color: #bfbfbf;
+    font-family: "JetBrains Mono", monospace;
+  }

@@ -4,10 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>WDPaI Project</title>
-    <link rel="stylesheet" type="text/css" href="data/css/menu.css">
+    <link rel="stylesheet" type="text/css" href="data/css/menuMobile.css">
+    <link rel="stylesheet" type="text/css" media="screen and (min-width: 1000px)" href="data/css/menu.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;1,400&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 

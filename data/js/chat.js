@@ -1,3 +1,6 @@
+document.getElementById("friendPanel").scrollTop =
+  document.getElementById("friendPanel").scrollHeight;
+
 document
   .getElementById("textInput")
   .addEventListener("keyup", function (event) {
@@ -70,7 +73,7 @@ conn.onmessage = function (e) {
     messageDiv.appendChild(messageContent);
     document.getElementById("friendPanel").appendChild(messageDiv);
     document.getElementById("friendPanel").scrollTop =
-    document.getElementById("friendPanel").scrollHeight;
+      document.getElementById("friendPanel").scrollHeight;
   }
 };
 

@@ -26,7 +26,7 @@ class SecurityController extends AppController {
             
         } 
 
-        if($user->getPassword() !== $password) {
+        if(!password_verify($password, $user->getPassword())) {
             return $this->renderView("login", ['messages' => ['Wrong password!']]);
         }
 
@@ -61,7 +61,9 @@ class SecurityController extends AppController {
             return $this->renderView("register", ['messages' => ['User with this email already exists!']]);
         }
 
-        if($userRepo->addUser($_POST['nickname'], $_POST['password'], $_POST['email'])) {
+        $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+        if($userRepo->addUser($_POST['nickname'], $hashedPassword, $_POST['email'])) {
             $url = "http://$_SERVER[HTTP_HOST]";
             header("Location: {$url}/home");
         } else {

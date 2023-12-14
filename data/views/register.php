@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>WDPaI Project</title>
-    <link rel="stylesheet" type="text/css" href="data/css/register.css">
+    <link rel="stylesheet" type="text/css" href="data/css/registerMobile.css">
+    <link rel="stylesheet" type="text/css" media="screen and (min-width: 1000px)" href="data/css/register.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;1,400&display=swap" rel="stylesheet">

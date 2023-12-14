@@ -54,7 +54,7 @@ body {
 
 #loginInput,
 #passwordInput{
-  width: 25vw;
+  width: 50vw;
   height: 5vh;
   flex-shrink: 0;
   background-color: #1e1e1e;
@@ -64,14 +64,14 @@ body {
   border: none;
   margin-bottom: 1vh;
   text-align: center;
-  font-size: 24px; 
+  font-size: 4vw; 
   color: #bfbfbf;
   font-family: "JetBrains Mono", monospace;
 }
 
 #loginButton,
 #registerButton {
-    width: 10vw;
+    width: 22vw;
     height: 5vh;
     flex-shrink: 0;
     background-color: #1e1e1e;
@@ -81,7 +81,7 @@ body {
     border: none;
     margin: 0vh 1vw 1vh 1vw;
     text-align: center;
-    font-size: 24px; 
+    font-size: 4vw; 
     color: #bfbfbf;
     font-family: "JetBrains Mono", monospace;
 
@@ -101,5 +101,5 @@ body {
 }
 
 #message {
-    font-size: 20px;
+    font-size: 40px;
 }

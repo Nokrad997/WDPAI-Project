@@ -92,11 +92,11 @@ body {
   font-family: "JetBrains Mono", monospace;
 }
 #friendPanel {
-  width: 500px; /* Szerokość panelu */
-  height: 180px; /* Wysokość panelu */
-  overflow-y: auto; /* Włączenie przewijania pionowego */
+  width: 500px; 
+  height: 180px; 
+  overflow-y: auto;
   overflow-x: hidden;
-  padding: 10px; /* Wewnętrzny odstęp */
+  padding: 10px; 
   flex-shrink: 0;
   background-color: #1e1e1e;
   fill: #1e1e1e;

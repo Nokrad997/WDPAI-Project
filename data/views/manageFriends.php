@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>WDPaI Project</title>
-    <link rel="stylesheet" type="text/css" href="data/css/manageFriends.css">
+    <link rel="stylesheet" type="text/css" href="data/css/manageFriendsMobile.css">
+    <link rel="stylesheet" type="text/css" media="screen and (min-width: 1000px)" href="data/css/manageFriends.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;1,400&display=swap" rel="stylesheet">
@@ -31,7 +32,8 @@
                     $users = $userRepo->getUsers();
 
                     foreach ($users as $user) {
-                        echo '<option class="hidden" value=' . $user['id'] . '>' . $user['nickname'] . "   " . $user["email"]  . '</option>';
+                        if($user['isAdmin'] != true)
+                            echo '<option class="hidden" value=' . $user['id'] . '>' . $user['nickname'] . "   " . $user["email"]  . '</option>';
                     }
                     ?>
                 </select>
@@ -41,7 +43,7 @@
             </div>
             <div class="friendManagement">
                 <div id="friendPanel">
-                    <h4> Friends </h4>
+                    <h2> Friends </h2>
                     <?php
                     require_once __DIR__ . "/../../src/repositories/FriendsRepository.php";
                     require_once __DIR__ . "/../../src/repositories/UserRepository.php";
@@ -66,7 +68,7 @@
                     }
                     ?>
 
-                    <h4> Invites </h4>
+                    <h2> Invites </h2>
                     <?php
                     require_once __DIR__ . "/../../src/repositories/FriendsRepository.php";
                     require_once __DIR__ . "/../../src/repositories/UserRepository.php";

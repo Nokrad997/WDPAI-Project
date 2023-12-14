@@ -52,7 +52,7 @@ class ProfilePictureRepository extends Repository
     public function updateProfilePicture($id, $path)
     {
         $statement = $this->database->connect()->prepare(
-            'UPDATE "usersProfilePictures" SET picture_path = ? WHERE id = ? RETURNING *'
+            'UPDATE "usersProfilePictures" SET picture_path = ? WHERE user_id = ? RETURNING *'
         );
 
         $statement->execute([

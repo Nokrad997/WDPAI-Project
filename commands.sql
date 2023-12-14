@@ -61,3 +61,27 @@ TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public."Friends"
     OWNER to root;
+
+
+CREATE TABLE IF NOT EXISTS public."Messages"
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    sender_id integer NOT NULL,
+    recipent_id integer NOT NULL,
+    content text COLLATE pg_catalog."default" NOT NULL,
+    sent_at timestamp without time zone NOT NULL DEFAULT (CURRENT_TIMESTAMP(0) + '01:00:00'::interval),
+    CONSTRAINT "Messages_pkey" PRIMARY KEY (id),
+    CONSTRAINT recipent_id FOREIGN KEY (recipent_id)
+        REFERENCES public."Users" (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT sender_id FOREIGN KEY (sender_id)
+        REFERENCES public."Users" (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public."Messages"
+    OWNER to root;
