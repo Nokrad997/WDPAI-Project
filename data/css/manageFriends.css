@@ -105,7 +105,7 @@ body {
   border: none;
   margin-bottom: 13px;
   text-align: center;
-  font-size: 24px;
+  font-size: 20px;
   color: #bfbfbf;
   font-family: "JetBrains Mono", monospace;
   margin-left: 100px;
@@ -121,6 +121,7 @@ body {
 
 .friendPar {
     margin-left: 10px;
+    font-size: 24px;
 }
 
 .deleteFriendBtn {

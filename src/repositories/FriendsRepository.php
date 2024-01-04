@@ -149,12 +149,14 @@ class FriendsRepository extends Repository
     public function checkIfFriends($id, $friend_id)
     {
         $statement = $this->database->connect()->prepare(
-            'SELECT * FROM "Friends" WHERE user_id = ? AND friend_user_id = ?'
+            'SELECT * FROM "Friends" WHERE user_id = ? AND friend_user_id = ? OR user_id = ? AND friend_user_id = ?'
         );
 
         $statement->execute([
             $id,
-            $friend_id
+            $friend_id,
+            $friend_id,
+            $id
         ]);
 
         $friend = $statement->fetch(PDO::FETCH_ASSOC);
