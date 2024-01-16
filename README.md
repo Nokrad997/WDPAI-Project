@@ -41,11 +41,13 @@ Before storing the user's information in the database, the system securely hashe
 6. Registration Decision:
 If the email is unique, the user is redirected to the login page, indicating successful registration.
 If there are validation errors or the email is not unique, an error message is displayed to the user, and they are prompted to correct the information.
+
 ![Zrzut ekranu 2023-12-13 o 15 24 15](https://github.com/Nokrad997/WDPAI-Project/assets/115646961/9cad8a24-9898-4dcb-89a9-4366c0c03ff4)
 ![Zrzut ekranu 2023-12-13 o 15 38 16](https://github.com/Nokrad997/WDPAI-Project/assets/115646961/bafaffab-863d-4eab-b685-e77a3855d903)
 
 #### Main Menu View:
 Options include Account, Friends, and Logout.</br>
+
 ![Zrzut ekranu 2023-12-13 o 15 24 33](https://github.com/Nokrad997/WDPAI-Project/assets/115646961/616ef1bf-d8ad-4baa-8e48-ba6585edd276)
 
 #### Account View:
@@ -95,6 +97,7 @@ A Fetch API request is sent to the server to delete the user's data from the dat
 1. User Interaction:
 Users click on the "Manage Friends" option.
 This action redirects users to the Friends Management View.
+
 ![Zrzut ekranu 2023-12-13 o 15 24 40](https://github.com/Nokrad997/WDPAI-Project/assets/115646961/15c9cb04-d5cb-4186-9bd6-68de347cea2f)
 
 #### Friends Management
@@ -121,6 +124,7 @@ Each entry is accompanied by "Accept" and "Reject" buttons.
 4. Accepting/Rejecting Friend Requests:
 Clicking the "Accept" or "Reject" button triggers a Fetch API request to update the status of the friend request in the database.
 If accepted, the friend's name is added to the Friends List.
+
 ![Zrzut ekranu 2023-12-13 o 15 41 40](https://github.com/Nokrad997/WDPAI-Project/assets/115646961/855d35bc-2911-4bc9-8b97-4a2f0caf79ae)
 
 #### Friends View
@@ -160,8 +164,13 @@ If the friend is not currently connected (no entry in the WebSocket connections 
 4. Receiving Messages:
 The WebSocket server forwards the message to the friend's WebSocket connection.
 The JavaScript script on the friend's side receives the message, parses it as JSON, and displays it appropriately on the friend's page.
+
 ![Zrzut ekranu 2023-12-13 o 15 29 20](https://github.com/Nokrad997/WDPAI-Project/assets/115646961/2b8d5ac7-8c7d-48d6-8d6d-c84729ea1a71)
 ![Zrzut ekranu 2023-12-13 o 15 29 11](https://github.com/Nokrad997/WDPAI-Project/assets/115646961/15f4997d-e57d-403d-8040-71693af31f04)
+
+### ERD diagram
+![image](https://github.com/Nokrad997/WDPAI-Project/assets/115646961/3405278a-051c-4cce-94d1-6e23dae49869)
+
 
 ### Getting Started
 
